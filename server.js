@@ -27,7 +27,7 @@ app.post('/pokemon', (req, res) => {
     }
 })
 
-mongoose.connect('mongodb+srv://admin:AilIkY0UKfOtNT9l@nodeapi.qnoldwr.mongodb.net/NodeApi?retryWrites=true&w=majority')
+mongoose.connect()
 .then(() => {
     console.log("Connected to MongoDB")
     app.listen(3000, () => {
