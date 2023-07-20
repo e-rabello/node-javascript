@@ -1,8 +1,11 @@
+require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const Pokemon = require('./models/pokemonModel')
 const app = express()
 
+const PORT = process.env.PORT
+const MONGO_URL = process.env.MONGO_URL
 
 app.use(express.json())
 
@@ -15,22 +18,22 @@ app.get('/blog', (req, res) => {
     res.send('Hello blog')
 })
 
-app.post('/pokemon', (req, res) => {
+app.post('/pokemon', async(req, res) => {
     try{
-        const pokemon = await Product.create(req.body)
+        const pokemon = await Pokemon.create(req.body)
         res.status(200).json(pokemon);
 
     } catch (error) {
         console.log(error.message);
-        res.status(500).json((message: error.message));
+        res.status(500).json({message: error.message});
 
     }
 })
 
-mongoose.connect('mongodb+srv://admin:AilIkY0UKfOtNT9l@nodeapi.qnoldwr.mongodb.net/NodeApi?retryWrites=true&w=majority')
+mongoose.connect(MONGO_URL)
 .then(() => {
     console.log("Connected to MongoDB")
-    app.listen(3000, () => {
+    app.listen(PORT, () => {
         console.log('Node-API is running on port 3000')
         });
 }).catch((error) => {
