@@ -1,6 +1,6 @@
-const mongoose = require('moongoose')
+const mongoose = require('mongoose')
 
-const pokemonSchema = moongose.Schema(
+const pokemonSchema = mongoose.Schema(
     {
         name: {
             type: String,
@@ -14,11 +14,11 @@ const pokemonSchema = moongose.Schema(
 
         image: {
             type: String,
-            required: false,
+            required: false
         }
     },
     {
-        timestamps: True
+        timestamps: true
     }
 
 )

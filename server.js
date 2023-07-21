@@ -30,11 +30,7 @@ app.post('/pokemon', async(req, res) => {
     }
 })
 
-<<<<<<< HEAD
 mongoose.connect(MONGO_URL)
-=======
-mongoose.connect()
->>>>>>> 543e8061b3f232ad6b50cc1021e660db71893f51
 .then(() => {
     console.log("Connected to MongoDB")
     app.listen(PORT, () => {
