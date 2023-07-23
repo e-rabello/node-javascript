@@ -50,5 +50,3 @@ mongoose.connect(MONGO_URL)
 }).catch((error) => {
     console.log(error)
 })
-
-//https://assets.pokemon.com/assets/cms2/img/pokedex/full/004.png
