@@ -19,8 +19,22 @@ app.get('/', (req, res) => {
 // Fetch all pokémons from MongoDB
 app.get('/pokemon', async(req, res) => {
     try{
-        const pokemon = await Pokemon.find({});
-        res.status(200).json(pokemon);
+        const pokemons = await Pokemon.find({});
+        res.status(200).json(pokemons);
+
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({message: error.message});
+    }
+})
+
+// GET
+// Fetch a pokémon from MongoDB
+app.get('/pokemon/:name/', async(req, res) => {
+    try{
+        const {name} = req.params; 
+        const pokemon = await Pokemon.findbyId(name);
+        res.status(200).json(pokemon)
 
     } catch (error) {
         console.log(error.message);
