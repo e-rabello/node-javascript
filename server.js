@@ -15,7 +15,21 @@ app.get('/', (req, res) => {
     res.send('Hello Pokédex-API')
 })
 
+// GET 
+// Fetch all pokémons from MongoDB
+app.get('/pokemon', async(req, res) => {
+    try{
+        const pokemon = await Pokemon.find({});
+        res.status(200).json(pokemon);
+
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({message: error.message});
+    }
+})
+
 // POST
+// Create a new pokémon in MongoDB
 app.post('/pokemon', async(req, res) => {
     try{
         const pokemon = await Pokemon.create(req.body);
