@@ -42,4 +42,23 @@ router.post('/pokemon', async(req, res) => {
     }
 })
 
+
+//PUT 
+// Update information about pokémon
+router.put('/pokemon/:id', async(req, res) => {
+    try {
+        const {id} = req.params;
+        const pokemon = await Pokemon.findByIdAndUpdate(id, req.body);
+        if(!product) {
+            return res.status(400).json({message: 'cannot find any product with id %d', id})
+        }
+        else
+           res.status(200).json(product);
+
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+
+})
+
 module.exports = router;
