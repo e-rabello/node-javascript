@@ -15,6 +15,7 @@ app.get('/', (req, res) => {
     res.send('Hello Pokédex-API')
 })
 
+
 // GET 
 // Fetch all pokémons from MongoDB
 app.get('/pokemon', async(req, res) => {
@@ -29,11 +30,11 @@ app.get('/pokemon', async(req, res) => {
 })
 
 // GET
-// Fetch a pokémon from MongoDB
-app.get('/pokemon/:name/', async(req, res) => {
+// Fetch a pokémon from MongoDB using its id
+app.get('/pokemon/:id/', async(req, res) => {
     try{
-        const {name} = req.params; 
-        const pokemon = await Pokemon.findbyId(name);
+        const {id} = req.params; 
+        const pokemon = await Pokemon.findById(id);
         res.status(200).json(pokemon)
 
     } catch (error) {
