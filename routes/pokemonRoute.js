@@ -49,9 +49,9 @@ router.put('/pokemon/:id', async(req, res) => {
     try {
         const {id} = req.params;
         const pokemon = await Pokemon.findByIdAndUpdate(id, req.body);
-        // Couldn't find the specific pokémon in the Database
+        // Couldn't find the pokémon in the Database
         if(!pokemon) {
-            return res.status(404).json({message: 'Cannot any find any pokémon with id %d', id})
+            return res.status(404).json({message: 'Cannot find any pokémon with id %d', id})
         }
         else {
             const updatedPokemon = await Pokemon.findByIdAndUpdate(id, req.body);
@@ -71,7 +71,7 @@ router.delete('/pokemon/:id', async(req, res) => {
         const {id} = req.params;
         const pokemon = await Pokemon.findByIdAndDelete(id);
         if(!pokemon) {
-            return res.status(404).json({message: 'Cannot any find any pokémon with id %d', id})
+            return res.status(404).json({message: 'Cannot find any pokémon with id %d', id})
         }
         else {
             res.status(200).json(pokemon);
