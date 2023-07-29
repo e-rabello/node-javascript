@@ -49,11 +49,11 @@ router.put('/pokemon/:id', async(req, res) => {
     try {
         const {id} = req.params;
         const pokemon = await Pokemon.findByIdAndUpdate(id, req.body);
-        if(!product) {
+        if(!pokemon) {
             return res.status(400).json({message: 'cannot find any product with id %d', id})
         }
         else
-           res.status(200).json(product);
+           res.status(200).json(pokemon);
 
     } catch (error) {
         res.status(500).json({message: error.message});
