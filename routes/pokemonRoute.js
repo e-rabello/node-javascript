@@ -64,4 +64,22 @@ router.put('/pokemon/:id', async(req, res) => {
 
 })
 
+// Delete a pokémon from the Database
+router.delete('/pokemon/:id', async(req, res) => {
+
+    try{
+        const {id} = req.params;
+        const pokemon = await Pokemon.findByIdAndDelete(id);
+        if(!pokemon) {
+            return res.status(404).json({message: 'Cannot any find any pokémon with id %d', id})
+        }
+        else {
+            res.status(200).json(pokemon);
+        }
+
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+})
+
 module.exports = router;
