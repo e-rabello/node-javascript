@@ -43,6 +43,25 @@ app.get('/pokemon/:id/', async(req, res) => {
     }
 })
 
+//PUT 
+// Update information about a pokémon
+router.put('/pokemon/:id', async(req, res) => {
+    try {
+        const {id} = req.params;
+        const pokemon = await Pokemon.findByIdAndUpdate(id, req.body);
+        // Couldn't find the specific pokémon in the Database
+        if(!pokemon) {
+            return res.status(404).json({message: 'Cannot any find any pokémon with id %d', id})
+        }
+        else
+           res.status(200).json(pokemon);
+
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+
+})
+        
 // POST
 // Create a new pokémon in MongoDB
 app.post('/pokemon', async(req, res) => {
