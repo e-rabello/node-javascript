@@ -45,7 +45,7 @@ app.get('/pokemon/:id/', async(req, res) => {
 
 //PUT 
 // Update information about a pokémon
-router.put('/pokemon/:id', async(req, res) => {
+app.put('/pokemon/:id', async(req, res) => {
     try {
         const {id} = req.params;
         const pokemon = await Pokemon.findByIdAndUpdate(id, req.body);
