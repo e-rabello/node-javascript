@@ -13,7 +13,6 @@ app.use(express.json())
 
 app.use('/api', pokemonRoute);
 
-// routes 
 app.get('/', (req, res) => {
     res.send('Hello Pokédex-API')
 })
