@@ -10,7 +10,6 @@ const MONGO_URL = process.env.MONGO_URL
 // Express Middleware to be able to receive data through JSON objects
 app.use(express.json())
 
-// routes 
 app.get('/', (req, res) => {
     res.send('Hello Pokédex-API')
 })
@@ -35,8 +34,12 @@ app.get('/pokemon/:id/', async(req, res) => {
     try{
         const {id} = req.params; 
         const pokemon = await Pokemon.findById(id);
-        res.status(200).json(pokemon)
-
+        if(!pokemon) {
+            return res.status(404).json({message: 'Cannot find any pokémon with id %d', id})
+        }
+        else {
+            res.status(200).json(pokemon);
+        }
     } catch (error) {
         console.log(error.message);
         res.status(500).json({message: error.message});
@@ -77,6 +80,7 @@ app.post('/pokemon', async(req, res) => {
     }
 })
 
+// DELETE
 // Delete a pokémon from the Database
 app.delete('/pokemon/:id', async(req, res) => {
     try{
