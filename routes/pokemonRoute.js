@@ -21,8 +21,12 @@ router.get('/pokemon/:id/', async(req, res) => {
     try{
         const {id} = req.params; 
         const pokemon = await Pokemon.findById(id);
-        res.status(200).json(pokemon)
-
+        if(!pokemon) {
+            return res.status(404).json({message: 'Cannot find any pokémon with id %d', id})
+        }
+        else {
+            res.status(200).json(pokemon);
+        }
     } catch (error) {
         console.log(error.message);
         res.status(500).json({message: error.message});
