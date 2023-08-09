@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+ mongo-db:
+  image: mongo:5.0
+  container_name: app-mongo-elvis
+  environment:
+      MONGO_INITDB_ROOT_USERNAME: elvis
+      MONGO_INITDB_ROOT_PASSWORD: 1234
+  ports:
+   - "27032:27017"
+  volumes:
+   - .docker/dbdata:/data/db
+   - .docker/mongodump:/home
