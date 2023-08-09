@@ -71,7 +71,12 @@ app.put('/pokemon/:id', async(req, res) => {
 // Create a new pokémon in MongoDB
 app.post('/pokemon', async(req, res) => {
     try{
+        
         const pokemon = await Pokemon.create(req.body);
+        // enivar email
+        // outra coisas
+
+
         res.status(200).json(pokemon);
 
     } catch (error) {
