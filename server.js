@@ -14,20 +14,6 @@ app.get('/', (req, res) => {
     res.send('Hello Pokédex-API')
 })
 
-
-// GET 
-// Fetch all pokémons from MongoDB
-app.get('/pokemon', async(req, res) => {
-    try{
-        const pokemons = await Pokemon.find({});
-        res.status(200).json(pokemons);
-
-    } catch (error) {
-        console.log(error.message);
-        res.status(500).json({message: error.message});
-    }
-})
-
 // GET
 // Fetch a pokémon from MongoDB using its id
 app.get('/pokemon/:id/', async(req, res) => {
@@ -40,6 +26,19 @@ app.get('/pokemon/:id/', async(req, res) => {
         else {
             res.status(200).json(pokemon);
         }
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({message: error.message});
+    }
+})
+
+// GET 
+// Fetch all pokémons from MongoDB
+app.get('/pokemon', async(req, res) => {
+    try{
+        const pokemons = await Pokemon.find({});
+        res.status(200).json(pokemons);
+
     } catch (error) {
         console.log(error.message);
         res.status(500).json({message: error.message});
