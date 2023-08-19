@@ -2,19 +2,6 @@ const express = require('express');
 const Pokemon = require('../models/pokemonModel');
 const router = express.Router();
 
-// GET 
-// Fetch all pokémons from MongoDB
-router.get('/pokemon', async(req, res) => {
-    try{
-        const pokemons = await Pokemon.find({});
-        res.status(200).json(pokemons);
-
-    } catch (error) {
-        console.log(error.message);
-        res.status(500).json({message: error.message});
-    }
-})
-
 // GET
 // Fetch a pokémon from MongoDB using its id
 router.get('/pokemon/:id/', async(req, res) => {
@@ -32,6 +19,20 @@ router.get('/pokemon/:id/', async(req, res) => {
         res.status(500).json({message: error.message});
     }
 })
+
+// GET 
+// Fetch all pokémons from MongoDB
+router.get('/pokemon', async(req, res) => {
+    try{
+        const pokemons = await Pokemon.find({});
+        res.status(200).json(pokemons);
+
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({message: error.message});
+    }
+})
+
 
 // POST
 // Create a new pokémon in MongoDB
