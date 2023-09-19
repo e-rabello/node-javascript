@@ -9,7 +9,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: elvis
       MONGO_INITDB_ROOT_PASSWORD: 1234
   ports:
-   - "3000:3000"
+   - "27032:27017"
   volumes:
    - .docker/dbdata:/data/db
    - .docker/mongodump:/home
